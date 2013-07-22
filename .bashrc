@@ -20,14 +20,9 @@ shopt -s cmdhist
 export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/X11R6/bin:/usr/local/scripts:$HOME/bin
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export BLOCKSIZE=K
 export FTP_PASSIVE_MODE=NO
-export HISTCONTROL="ignoredups"
 
 PROMPT_COMMAND='history -a'
-
-# bookmark
-CDPATH=".:..:../..:/usr/local/www:/home/fch/tmp:/home/fch/download"
 
 # set PS1
 if [[ $SSH_CLIENT == '' ]];
@@ -66,21 +61,8 @@ alias egrep='egrep --color=auto'
 if [[ $DISPLAY == '' ]];
 then
 	alias vi='vim 2>/dev/null'
-	export SVN_EDITOR="/usr/local/bin/vim -f"
 else
 	alias vi='gvim 2>/dev/null'
-	export SVN_EDITOR="/usr/local/bin/gvim -f"
 fi
 
-export EDITOR="/usr/local/bin/vim"
-
-#CCACHE
-export PATH=/usr/local/libexec/ccache:$PATH
-export CCACHE_PATH=/usr/bin:/usr/local/bin
-export CCACHE_DIR=/usr/.ccache
-export CCACHE_LOGFILE=/var/log/ccache.log
-
-if [[ -x /usr/local/bin/ccache ]];
-then
-  /usr/local/bin/ccache -M 4GB > /dev/null
-fi
+export EDITOR="vim"
