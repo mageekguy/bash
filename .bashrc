@@ -44,7 +44,7 @@ fi
 
 case $TERM in
 	xterm*)
-		export PS1="\[\033]0;\u@\h:\w\007\]$PS1USERCOLOR\u$PS1GLOBALCOLOR@\h:\w\n$PS1GLOBALCOLOR\#>\[\033[0m\] "
+		export PS1="\[\033]0;\u@\h:\w\007\]$PS1USERCOLOR\u$PS1GLOBALCOLOR@\h:\w\$(__git_ps1 \"(%s)\")\n$PS1GLOBALCOLOR\#>\[\033[0m\] "
 		;;
 	*)
 		export PS1="\u@\h:\w\n\#> "
