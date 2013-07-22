@@ -1,0 +1,38 @@
+shopt -s cdspell
+shopt -s histappend histreedit histverify
+shopt -s checkwinsize
+shopt -s sourcepath
+shopt -s no_empty_cmd_completion
+shopt -s cmdhist
+
+PROMPT_COMMAND='history -a'
+
+if [[ $SSH_CLIENT == '' ]];
+then
+	PS1GLOBALCOLOR="\[\033[0;36m\]"
+else
+	PS1GLOBALCOLOR="\[\033[0;32m\]"
+fi
+
+if [[ $SUDO_USER != '' ]];
+then
+	PS1USERCOLOR="\[\033[0;31m\]"
+	export PS1="\[\033]0;\u@\h:\w\007\]$PS1USERCOLOR\u$PS1GLOBALCOLOR@\h:\w\n$PS1GLOBALCOLOR\#>\[\033[0m\] "
+else
+	PS1USERCOLOR=$PS1GLOBALCOLOR
+	export PS1="\[\033]0;\u@\h:\w\007\]$PS1USERCOLOR\u$PS1GLOBALCOLOR@\h:\w\$(__git_ps1 \"(%s)\")\n$PS1GLOBALCOLOR\#>\[\033[0m\] "
+fi
+
+# aliases
+alias vi='mvim'
+alias vimrc='vi ~/.vimrc'
+alias gvimrc='vi ~/.vimrc'
+alias bashrc='vi ~/.bashrc'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+alias df='df -kh'
+alias ls='ls -laFGh'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'

@@ -1,0 +1,9 @@
+set completion-ignore-case on
+set visible-stats on
+set show-all-if-ambiguous on
+set expand-tilde on
+set bell-style none
+set history-preserve-point
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
