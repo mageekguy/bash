@@ -11,7 +11,6 @@ fi
 set -o vi
 
 # options
-set -o vi
 shopt -s cdspell
 shopt -s histappend histreedit histverify
 shopt -s checkwinsize
@@ -20,7 +19,7 @@ shopt -s no_empty_cmd_completion
 shopt -s cmdhist
 
 # export
-export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/X11R6/bin:/usr/local/scripts:$HOME/bin
+export PATH=$PATH:/usr/local/scripts:$HOME/bin
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export FTP_PASSIVE_MODE=NO
