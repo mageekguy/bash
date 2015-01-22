@@ -24,7 +24,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export FTP_PASSIVE_MODE=NO
 
-PROMPT_COMMAND='history -a'
+export PROMPT_COMMAND="history -a;history -c;history -r;$PROMPT_COMMAND"
 
 # set PS1
 if [[ $SSH_CLIENT == '' ]];
@@ -43,10 +43,10 @@ fi
 
 case $TERM in
 	xterm*)
-		export PS1="\[\033]0;\u@\h:\w\007\]$PS1USERCOLOR\u$PS1GLOBALCOLOR@\h:\w\$(__git_ps1 \"(%s)\")\n$PS1GLOBALCOLOR\#>\[\033[0m\] "
+		export PS1="\[\033]0;\u@\h:\w\007\]$PS1USERCOLOR\u$PS1GLOBALCOLOR@\h:\w\$(__git_ps1 \"(%s)\")\n$PS1GLOBALCOLOR\#|\!>\[\033[0m\] "
 		;;
 	*)
-		export PS1="\u@\h:\w\n\#> "
+		export PS1="\u@\h:\w\n\#|\!> "
 		;;
 esac
 
