@@ -1,9 +1,32 @@
 set completion-ignore-case on
 set visible-stats on
+set colored-stats on
+set colored-completion-prefix on
+set show-all-if-unmodified on
 set show-all-if-ambiguous on
 set expand-tilde on
 set bell-style none
 set history-preserve-point
+set convert-meta off
+set input-meta on
+set output-meta on
+set visible-stats on
+set editing-mode vi
+set show-mode-in-prompt on
+set vi-cmd-mode-string ": "
+set vi-ins-mode-string "+ "
 
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
+set keymap vi-command
+	"gg": beginning-of-history
+	"G": end-of-history
+
+set keymap vi-insert
+	TAB: menu-complete
+	"\e[Z": menu-complete-backward
+	Control-l: clear-screen
+	Control-w: backward-kill-word
+	Control-q: complete
+

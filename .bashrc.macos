@@ -1,4 +1,4 @@
-set -o vi
+source `brew --prefix`/etc/bash_completion
 
 shopt -s cdspell
 shopt -s histappend histreedit histverify
@@ -7,7 +7,13 @@ shopt -s sourcepath
 shopt -s no_empty_cmd_completion
 shopt -s cmdhist
 
-export PROMPT_COMMAND="history -a;history -c;history -r;$PROMPT_COMMAND"
+if [ -z “$(type -t update_terminal_cwd)” ] || [ “$(type -t update_terminal_cwd)” != “function” ]; then
+	update_terminal_cwd() {
+		true;
+	}
+fi
+
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a;history -c;history -r"
 
 if [[ $SSH_CLIENT == '' ]];
 then
@@ -25,8 +31,14 @@ else
 	export PS1="\[\033]0;\u@\h:\w\007\]$PS1USERCOLOR\u$PS1GLOBALCOLOR@\h:\w\$(__git_ps1 \"(%s)\")\n$PS1GLOBALCOLOR\#|\!>\[\033[0m\] "
 fi
 
+get_github_latest_release() {
+  curl --silent "https://api.github.com/repos/$1/releases/latest" | # Get latest release from GitHub api
+    grep '"tag_name":' |                                            # Get tag line
+    sed -E 's/.*"([^"]+)".*/\1/'                                    # Pluck JSON value
+}
+
 # aliases
-alias vi='mvim'
+alias vi='/Applications/MacVim.app/Contents/MacOS/Vim -g '
 alias vimrc='vi ~/.vimrc'
 alias gvimrc='vi ~/.vimrc'
 alias bashrc='vi ~/.bashrc'
@@ -34,7 +46,12 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
-alias df='df -kh'
 alias ls='ls -laFGh'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
+alias wifipassword='security find-generic-password -wa '
+alias sizes='du -sh * | sort -n'
+alias df='df -P -l -H'
+alias ..='cd ..'
+
+source ~/.profile
