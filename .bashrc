@@ -5,7 +5,12 @@ then
 elif [ -f /usr/local/etc/bash_completion ];
 then
 	. /usr/local/etc/bash_completion
+elif [ -f /etc/profile.d/bash_completion.sh ];
+then
+	. /etc/profile.d/bash_completion.sh
 fi
+
+. /usr/share/git-core/contrib/completion/git-prompt.sh
 
 #Mode vi
 set -o vi
@@ -67,4 +72,18 @@ else
 	alias vi='gvim 2>/dev/null'
 fi
 
-export EDITOR="vim"
+export BLOCKSIZE=K
+export HISTCONTROL="ignoredups"
+export CDPATH=.:~
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+
+if [[ $DISPLAY == '' ]];
+then
+	export EDITOR="vim -f"
+else
+	export EDITOR="gvim -f"
+fi
+
+source ~/.profile

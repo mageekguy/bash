@@ -1,7 +1,0 @@
-export BLOCKSIZE=K
-export HISTCONTROL="ignoredups"
-export CDPATH=.:~
-export EDITOR="vim -f"
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWSTASHSTATE=1
-export GIT_PS1_SHOWUNTRACKEDFILES=1
