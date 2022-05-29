@@ -12,9 +12,6 @@ fi
 
 . /usr/share/git-core/contrib/completion/git-prompt.sh
 
-#Mode vi
-set -o vi
-
 # options
 shopt -s cdspell
 shopt -s histappend histreedit histverify
@@ -29,7 +26,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export FTP_PASSIVE_MODE=NO
 
-export PROMPT_COMMAND="history -a;history -c;history -r;$PROMPT_COMMAND"
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a;history -c;history -r"
 
 # set PS1
 if [[ $SSH_CLIENT == '' ]];
