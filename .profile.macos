@@ -1,9 +1,9 @@
 export BLOCKSIZE=K
 export HISTCONTROL="ignoredups"
 export CDPATH=.:~
-export PATH=/usr/local/mysql/bin:/usr/local/sbin:/usr/local/bin:$PATH
 export EDITOR="/usr/local/bin/mvim -f"
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 export USER_BASH_COMPLETION_DIR=~/.bash_completion.d
+export BASH_SILENCE_DEPRECATION_WARNING=1
