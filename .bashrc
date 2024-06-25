@@ -21,9 +21,9 @@ shopt -s no_empty_cmd_completion
 shopt -s cmdhist
 
 # export
-export PATH=$PATH:/usr/local/scripts:$HOME/bin
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+export PATH=$PATH:/usr/local/scripts:$HOME/bin:$HOME/.cargo/bin
+export LANG=fr_FR.UTF-8
+export LC_ALL=fr_FR.UTF-8
 export FTP_PASSIVE_MODE=NO
 
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a;history -c;history -r"
@@ -64,23 +64,18 @@ alias egrep='egrep --color=auto'
 
 if [[ $DISPLAY == '' ]];
 then
-	alias vi='vim 2>/dev/null'
+	alias vi='nvim'
 else
-	alias vi='gvim 2>/dev/null'
+	alias vi='nvim-qt --maximized 2>/dev/null'
 fi
 
 export BLOCKSIZE=K
 export HISTCONTROL="ignoredups"
-export CDPATH=.:~
+export CDPATH=~:~/Norsys/Clients:~/Norsys/Formations
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
-
-if [[ $DISPLAY == '' ]];
-then
-	export EDITOR="vim -f"
-else
-	export EDITOR="gvim -f"
-fi
+export EDITOR="vi"
 
 source ~/.profile
+. "$HOME/.cargo/env"
