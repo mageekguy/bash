@@ -77,5 +77,6 @@ export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 export EDITOR="vi"
 
+source "$HOME/.cargo/env"
+
 source ~/.profile
-. "$HOME/.cargo/env"
