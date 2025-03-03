@@ -1,0 +1,104 @@
+[user]
+	name = Frédéric Hardy
+	email = fhardy@norsys.fr
+	signingkey = EED12E8C8D704E15B2CBF11F328F3BB72C716223
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[column]
+	ui = auto
+[tag]
+	sort = version:refname
+[alias]
+	st = status -sb
+	ci = commit
+	commit = commit -S
+	co = checkout
+	fp = format-patch
+	ready = rebase -i @{u}
+	prune = fetch --prune
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ignore  = "!f() { [ ! -e \"$GIT_PREFIX.gitignore\" ] && touch \"$GIT_PREFIX.gitignore\"; echo \"$1\" >> $GIT_PREFIX.gitignore; }; f"
+	undo = !git reset --soft HEAD~ && git ls
+	aliases = "!git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1 => \\2/' | sort"
+	amend = commit --amend
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	tree = log --decorate --graph --oneline --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	branches = log --graph --simplify-by-decoration --pretty=format:'%d' --all
+	previous = "!f() { git show HEAD~1:$1; }; fi"
+	review = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t gvimdiff $BRANCH...$SHA; }; f"
+	diffw = !git diff --color-words
+	stash = stash save --include-untracked
+	search = grep --name-only -i
+	wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+	find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
+	show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
+[grep]
+	lineNumber = true
+[color "grep"]
+	filename = "magenta"
+	linenumber = "green"
+	match = "red bold"
+[core]
+	editor = "nvim -f"
+	quotepath = false
+	autocrlf = input
+	excludesfile = ~/.gitignore
+[branch]
+	sort = -committerdate
+	autosetuprebase = always
+[push]
+	default = simple
+	followTags = true
+	autoSetupRemote = true
+[status]
+	showUntrackedFiles = all
+[branch "*branch-name*"]
+	rebase = true
+[rebase]
+	autosquash = true
+	autoStash = true
+	updateRefs = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[pull]
+	rebase = true
+[commit]
+	template = ~/.git_commit_template.txt
+	verbose = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
+[fetch]
+	prune = true
+[blame]
+	date = human
+[diff]
+	tool = nvim
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[difftool]
+	prompt = false
+	trustExitCode = true
+[difftool "nvim"]
+	cmd ="nvim -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+	tool = nvim
+	conflictstyle = zdiff3
+[mergetool]
+	prompt = false
+	trustExitCode = true
+	keepBackup = false
+[mergetool "nvim"]
+	layout = "LOCAL,BASE,REMOTE / MERGED"
+[help]
+	autocorrect = prompt
