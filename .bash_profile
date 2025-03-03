@@ -1,1 +1,3 @@
-source ~/.bashrc
+clear
+
+source "$HOME/.bashrc"
